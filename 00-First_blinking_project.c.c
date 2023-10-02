@@ -2,7 +2,7 @@
 
 // my_first_blinking_program
 
-unsigned int coun =0;
+void delay (void);
 int main()
 {
   // Clock gate for PORT F
@@ -17,15 +17,14 @@ int main()
     {
       // Write output Data 
       GPIO_PORTF_DATA_R |= (1<<1);  //SET
-      coun = 0;
-      while (coun < 1000000)
-      {
-        coun++;
-      }
+      delay();
       GPIO_PORTF_DATA_R &= ~(1<<1);  //CLEAR
-      while (coun < 1000000)
-      {
-        coun++;
-      }
+      delay();
     }
+}
+
+void delay (void){
+  volatile unsigned int counter =0;
+  while (counter < 1000000)
+    counter++ ;
 }
